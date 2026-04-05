@@ -132,25 +132,69 @@ const PRODUCT_DATA = [
     featured: false
   },
   {
-    id: 'cb-animation-stars',
-    name: 'Animation Stars Coloring Book',
+    id: 'cb-animation-despicable-me',
+    name: 'Despicable Me Coloring Book',
     price: 1450,
     category: 'Coloring Books',
-    image: 'images/coloring-book-forest.svg',
-    shortDescription: 'Character-inspired pages featuring famous animation vibes.',
+    image: 'images/Despicable_Me.jpeg',
+    shortDescription: 'Mischievous fun pages inspired by the Despicable Me universe.',
     description:
-      'A lively mix of animation-inspired scenes reminiscent of Despicable Me, Zootopia, Frozen, and Disney Princess styles.',
+      'Bring playful energy to your coloring routine with character-inspired scenes and bold, friendly line work.',
     featured: false
   },
   {
-    id: 'cb-animation-classics',
-    name: 'Animation Classics Coloring Book',
+    id: 'cb-animation-zootopia',
+    name: 'Zootopia Coloring Book',
     price: 1550,
     category: 'Coloring Books',
-    image: 'images/coloring-book-forest.svg',
-    shortDescription: 'Classic cartoon-style adventures with expressive scenes.',
+    image: 'images/Zootopia.jpeg',
+    shortDescription: 'City adventure scenes featuring animal-world style storytelling.',
     description:
-      'Brings iconic animation energy to your table with imaginative pages inspired by fan-favorite story worlds.',
+      'Packed with lively city backdrops and expressive characters, ideal for fans of detective adventure themes.',
+    featured: false
+  },
+  {
+    id: 'cb-animation-frozen',
+    name: 'Frozen Coloring Book',
+    price: 1500,
+    category: 'Coloring Books',
+    image: 'images/Frozen.jpeg',
+    shortDescription: 'Snowy fantasy scenes inspired by icy royal adventures.',
+    description:
+      'Color enchanting winter worlds, elegant gowns, and magical moments inspired by the Frozen vibe.',
+    featured: false
+  },
+  {
+    id: 'cb-animation-disney-princesses',
+    name: 'Disney Princesses Coloring Book',
+    price: 1650,
+    category: 'Coloring Books',
+    image: 'images/Disney Princesses.jpeg',
+    shortDescription: 'Royal-themed pages with timeless princess-inspired scenes.',
+    description:
+      'A graceful collection of princess-inspired illustrations made for dreamy palettes and elegant finishing touches.',
+    featured: false
+  },
+  {
+    id: 'cb-animation-toy-story',
+    name: 'Toy Story Coloring Book',
+    price: 1520,
+    category: 'Coloring Books',
+    image: 'images/Toy Story.jpeg',
+    shortDescription: 'Adventure-filled toy world pages with energetic characters.',
+    description:
+      'Capture playful action and friendship-themed scenes inspired by classic toy adventure storytelling.',
+    featured: false
+  },
+  {
+    id: 'cb-animation-minions',
+    name: 'Minions Coloring Book',
+    price: 1420,
+    category: 'Coloring Books',
+    image: 'images/Minions.jpeg',
+    shortDescription: 'Funny and chaotic pages for colorful laughter-filled sessions.',
+    description:
+      'A cheerful collection of silly expressions and action scenes inspired by the Minions style.',
     featured: false
   }
 ];
@@ -295,7 +339,14 @@ function renderColoringBooksSections() {
     },
     {
       selector: '[data-coloring-animation-grid]',
-      ids: ['cb-animation-stars', 'cb-animation-classics']
+      ids: [
+        'cb-animation-despicable-me',
+        'cb-animation-zootopia',
+        'cb-animation-frozen',
+        'cb-animation-disney-princesses',
+        'cb-animation-toy-story',
+        'cb-animation-minions'
+      ]
     }
   ];
 
