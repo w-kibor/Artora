@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ColorNest Stationery | Cart</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/cart.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a href="index.html" class="brand" aria-label="ColorNest Stationery home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          ColorNest Stationery
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li>
+            <a href="cart.html" class="active">Cart <span class="cart-pill" data-cart-count>0</span></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section" aria-labelledby="cart-title">
+        <h1 class="section-title" id="cart-title">Your Cart</h1>
+        <p class="section-subtitle">Review your items and proceed to checkout.</p>
+      </section>
+
+      <section class="section cart-grid" aria-label="Shopping cart details">
+        <div class="cart-items" data-cart-items></div>
+
+        <aside class="cart-summary">
+          <h2 class="section-title" style="font-size:1.45rem">Order Summary</h2>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong data-cart-subtotal>$0.00</strong>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <strong>Free</strong>
+          </div>
+          <hr style="border:0;border-top:1px solid rgba(131,129,165,.2);margin:1rem 0" />
+          <div class="summary-row">
+            <span>Total</span>
+            <strong data-cart-total>$0.00</strong>
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:.8rem">Checkout</button>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-shell">
+        <p>© 2026 ColorNest Stationery. Crafted with color and care.</p>
+        <div class="social" aria-label="Social media links">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Pinterest">Pinterest</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
