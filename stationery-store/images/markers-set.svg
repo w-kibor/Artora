@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Marker set">
+  <rect width="800" height="600" fill="#e0ffe8"/>
+  <rect x="120" y="100" width="560" height="400" rx="24" fill="#ffffff" stroke="#9bd8b2" stroke-width="8"/>
+  <g transform="translate(180 180)">
+    <rect width="80" height="240" rx="14" fill="#ffa0ac"/>
+    <rect x="100" width="80" height="240" rx="14" fill="#ffc870"/>
+    <rect x="200" width="80" height="240" rx="14" fill="#89d8ff"/>
+    <rect x="300" width="80" height="240" rx="14" fill="#ceb2ff"/>
+    <rect y="-24" width="80" height="28" rx="8" fill="#4d455f"/>
+    <rect x="100" y="-24" width="80" height="28" rx="8" fill="#4d455f"/>
+    <rect x="200" y="-24" width="80" height="28" rx="8" fill="#4d455f"/>
+    <rect x="300" y="-24" width="80" height="28" rx="8" fill="#4d455f"/>
+  </g>
+  <text x="400" y="150" text-anchor="middle" font-family="Verdana" font-size="36" fill="#4b5f52">Dual Tip Markers</text>
+</svg>

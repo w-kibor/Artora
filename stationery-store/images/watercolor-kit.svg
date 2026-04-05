@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Pocket watercolor kit">
+  <rect width="800" height="600" fill="#dff4ff"/>
+  <rect x="130" y="95" width="540" height="410" rx="26" fill="#ffffff" stroke="#95c6e7" stroke-width="8"/>
+  <rect x="210" y="185" width="380" height="220" rx="18" fill="#edf7ff" stroke="#bddcf1" stroke-width="5"/>
+  <circle cx="265" cy="240" r="28" fill="#ffa69e"/>
+  <circle cx="335" cy="240" r="28" fill="#ffd270"/>
+  <circle cx="405" cy="240" r="28" fill="#97e0bf"/>
+  <circle cx="475" cy="240" r="28" fill="#9ac4ff"/>
+  <circle cx="545" cy="240" r="28" fill="#cfb4ff"/>
+  <rect x="235" y="300" width="320" height="62" rx="12" fill="#ffffff" stroke="#bddcf1" stroke-width="4"/>
+  <text x="400" y="155" text-anchor="middle" font-family="Verdana" font-size="36" fill="#4a6980">Pocket Watercolors</text>
+</svg>

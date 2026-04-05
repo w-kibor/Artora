@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Mandala coloring book cover">
+  <rect width="800" height="600" fill="#ffe7ef"/>
+  <rect x="130" y="80" width="540" height="440" rx="28" fill="#fff" stroke="#f2b4ce" stroke-width="8"/>
+  <text x="400" y="150" text-anchor="middle" font-family="Verdana" font-size="38" fill="#6d4f7a">Mandala Calm</text>
+  <g transform="translate(400 320)">
+    <circle r="120" fill="none" stroke="#d49ad8" stroke-width="8"/>
+    <circle r="85" fill="none" stroke="#f1b2c8" stroke-width="7"/>
+    <circle r="48" fill="none" stroke="#aab7ff" stroke-width="6"/>
+    <circle r="14" fill="#8f7fd1"/>
+    <path d="M0-120 L0-48 M120 0 L48 0 M0 120 L0 48 M-120 0 L-48 0" stroke="#8f7fd1" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

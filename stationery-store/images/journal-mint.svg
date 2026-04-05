@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Mint gratitude journal">
+  <rect width="800" height="600" fill="#ddf8e9"/>
+  <rect x="210" y="70" width="390" height="460" rx="20" fill="#ffffff" stroke="#9cd9b6" stroke-width="10"/>
+  <rect x="210" y="70" width="65" height="460" rx="20" fill="#bfeccc"/>
+  <text x="408" y="225" text-anchor="middle" font-family="Verdana" font-size="38" fill="#507563">Gratitude</text>
+  <text x="408" y="270" text-anchor="middle" font-family="Verdana" font-size="34" fill="#507563">Journal</text>
+  <path d="M320 340 Q400 420 480 340" stroke="#6aa585" stroke-width="7" fill="none"/>
+  <circle cx="400" cy="320" r="16" fill="#fbc3a8"/>
+</svg>

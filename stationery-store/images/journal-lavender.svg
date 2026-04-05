@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Lavender journal">
+  <rect width="800" height="600" fill="#efe7ff"/>
+  <rect x="200" y="70" width="380" height="460" rx="20" fill="#ffffff" stroke="#bca8ff" stroke-width="10"/>
+  <rect x="200" y="70" width="60" height="460" rx="20" fill="#ddceff"/>
+  <circle cx="240" cy="145" r="6" fill="#8a74d7"/>
+  <circle cx="240" cy="180" r="6" fill="#8a74d7"/>
+  <circle cx="240" cy="215" r="6" fill="#8a74d7"/>
+  <text x="390" y="250" text-anchor="middle" font-family="Verdana" font-size="40" fill="#5c5076">Daily Journal</text>
+  <line x1="290" y1="300" x2="520" y2="300" stroke="#c9b9f2" stroke-width="6"/>
+  <line x1="290" y1="340" x2="520" y2="340" stroke="#c9b9f2" stroke-width="6"/>
+  <line x1="290" y1="380" x2="470" y2="380" stroke="#c9b9f2" stroke-width="6"/>
+</svg>

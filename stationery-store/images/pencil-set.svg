@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Pastel pencil set">
+  <rect width="800" height="600" fill="#d7f0ff"/>
+  <rect x="90" y="110" width="620" height="380" rx="26" fill="#ffffff" stroke="#9ad4ff" stroke-width="8"/>
+  <g transform="translate(170 180)">
+    <rect width="60" height="250" rx="9" fill="#ffb4ac"/>
+    <rect x="80" width="60" height="250" rx="9" fill="#ffd080"/>
+    <rect x="160" width="60" height="250" rx="9" fill="#bceecf"/>
+    <rect x="240" width="60" height="250" rx="9" fill="#b4d5ff"/>
+    <rect x="320" width="60" height="250" rx="9" fill="#d6c3ff"/>
+  </g>
+  <text x="400" y="155" text-anchor="middle" font-family="Verdana" font-size="36" fill="#49617a">Pastel Pencils</text>
+</svg>
