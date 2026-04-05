@@ -283,6 +283,15 @@ main {
   gap: 0.8rem;
 }
 
+.category-link {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.category-link:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
 .category-card h3 {
   margin: 0;
   font-family: 'Baloo 2', cursive;
@@ -507,6 +516,30 @@ main {
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(125, 123, 160, 0.16);
   padding: clamp(1rem, 0.35rem + 2.2vw, 2rem);
+}
+
+.category-intro {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(125, 123, 160, 0.16);
+  padding: clamp(1rem, 0.35rem + 2.2vw, 2rem);
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.pill {
+  padding: 0.48rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(109, 107, 136, 0.25);
+  background: #fff;
+  font-weight: 700;
+  color: #4c4a61;
 }
 
 .about-quote {

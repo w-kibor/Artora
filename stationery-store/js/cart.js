@@ -86,12 +86,78 @@ const PRODUCT_DATA = [
     description:
       'Compact watercolor tin with rich pigments, mixing wells, and a water brush for painting anywhere inspiration strikes.',
     featured: false
+  },
+  {
+    id: 'cb-kids-animal-adventure',
+    name: 'Kids Animal Adventure Coloring Book',
+    price: 850,
+    category: 'Coloring Books',
+    image: 'images/coloring-book-forest.svg',
+    shortDescription: 'Friendly animals, big outlines, and easy pages for little artists.',
+    description:
+      'A playful coloring journey for kids with cheerful scenes, thick lines, and parent-friendly single-sided pages.',
+    featured: false
+  },
+  {
+    id: 'cb-kids-fun-shapes',
+    name: 'Kids Fun Shapes Coloring Book',
+    price: 780,
+    category: 'Coloring Books',
+    image: 'images/coloring-book-forest.svg',
+    shortDescription: 'Simple shapes and joyful activities for preschool creativity.',
+    description:
+      'Helps children build confidence through simple patterns, cheerful objects, and beginner-friendly coloring spaces.',
+    featured: false
+  },
+  {
+    id: 'cb-mandala-deep-calm',
+    name: 'Mandala Deep Calm Edition',
+    price: 1200,
+    category: 'Coloring Books',
+    image: 'images/coloring-book-mandala.svg',
+    shortDescription: 'Advanced mandala details for calm focus and mindful breaks.',
+    description:
+      'A premium adults-only mandala collection with layered geometric designs made for long, relaxing sessions.',
+    featured: false
+  },
+  {
+    id: 'cb-mandala-zen-night',
+    name: 'Mandala Zen Night Collection',
+    price: 1350,
+    category: 'Coloring Books',
+    image: 'images/coloring-book-mandala.svg',
+    shortDescription: 'Night-themed mandala pages with intricate floral symmetry.',
+    description:
+      'Designed for evening wind-down routines, featuring rich mandalas ideal for pencils, gel pens, and fine liners.',
+    featured: false
+  },
+  {
+    id: 'cb-animation-stars',
+    name: 'Animation Stars Coloring Book',
+    price: 1450,
+    category: 'Coloring Books',
+    image: 'images/coloring-book-forest.svg',
+    shortDescription: 'Character-inspired pages featuring famous animation vibes.',
+    description:
+      'A lively mix of animation-inspired scenes reminiscent of Despicable Me, Zootopia, Frozen, and Disney Princess styles.',
+    featured: false
+  },
+  {
+    id: 'cb-animation-classics',
+    name: 'Animation Classics Coloring Book',
+    price: 1550,
+    category: 'Coloring Books',
+    image: 'images/coloring-book-forest.svg',
+    shortDescription: 'Classic cartoon-style adventures with expressive scenes.',
+    description:
+      'Brings iconic animation energy to your table with imaginative pages inspired by fan-favorite story worlds.',
+    featured: false
   }
 ];
 
-const CURRENCY = new Intl.NumberFormat('en-US', {
+const CURRENCY = new Intl.NumberFormat('en-KE', {
   style: 'currency',
-  currency: 'USD'
+  currency: 'KES'
 });
 
 function getCart() {
@@ -215,6 +281,35 @@ function renderShopProducts(category = 'All') {
 
   target.innerHTML = filtered.map(cardTemplate).join('');
   wireAddToCartButtons(target);
+}
+
+function renderColoringBooksSections() {
+  const sections = [
+    {
+      selector: '[data-coloring-kids-grid]',
+      ids: ['cb-kids-animal-adventure', 'cb-kids-fun-shapes']
+    },
+    {
+      selector: '[data-coloring-mandala-grid]',
+      ids: ['cb-mandala-deep-calm', 'cb-mandala-zen-night']
+    },
+    {
+      selector: '[data-coloring-animation-grid]',
+      ids: ['cb-animation-stars', 'cb-animation-classics']
+    }
+  ];
+
+  sections.forEach((section) => {
+    const target = document.querySelector(section.selector);
+    if (!target) return;
+
+    const products = section.ids
+      .map((id) => findProductById(id))
+      .filter(Boolean);
+
+    target.innerHTML = products.map(cardTemplate).join('');
+    wireAddToCartButtons(target);
+  });
 }
 
 function initShopFilters() {
@@ -351,6 +446,7 @@ function init() {
   updateCartCount();
   renderFeaturedProducts();
   initShopFilters();
+  renderColoringBooksSections();
   renderProductDetails();
   renderCartPage();
   setupContactForm();
