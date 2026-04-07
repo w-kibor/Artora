@@ -367,6 +367,9 @@ function initShopFilters() {
   const wrap = document.querySelector('[data-filter-row]');
   if (!wrap) return;
 
+  const params = new URLSearchParams(window.location.search);
+  const initialCategory = params.get('category') || 'All';
+
   wrap.querySelectorAll('.filter-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       wrap.querySelectorAll('.filter-btn').forEach((item) => item.classList.remove('active'));
@@ -375,7 +378,16 @@ function initShopFilters() {
     });
   });
 
-  renderShopProducts('All');
+  const initialButton = Array.from(wrap.querySelectorAll('.filter-btn')).find(
+    (btn) => btn.getAttribute('data-filter') === initialCategory
+  );
+
+  if (initialButton) {
+    wrap.querySelectorAll('.filter-btn').forEach((item) => item.classList.remove('active'));
+    initialButton.classList.add('active');
+  }
+
+  renderShopProducts(initialButton ? initialCategory : 'All');
 }
 
 function renderProductDetails() {
