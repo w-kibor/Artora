@@ -218,13 +218,54 @@ const CURRENCY = new Intl.NumberFormat('en-KE', {
   currency: 'KES'
 });
 
+const CART_STORAGE_KEY = 'colornest_cart';
+const MIN_QTY = 1;
+const MAX_QTY = 12;
+
+function normalizeQuantity(value) {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isInteger(parsed)) return MIN_QTY;
+  return Math.min(MAX_QTY, Math.max(MIN_QTY, parsed));
+}
+
+function sanitizeCartPayload(payload) {
+  if (!Array.isArray(payload)) return [];
+
+  const sanitized = [];
+
+  payload.forEach((item) => {
+    if (!item || typeof item !== 'object') return;
+    if (typeof item.id !== 'string') return;
+    if (!findProductById(item.id)) return;
+
+    sanitized.push({
+      id: item.id,
+      quantity: normalizeQuantity(item.quantity)
+    });
+  });
+
+  return sanitized;
+}
+
 function getCart() {
-  const parsed = JSON.parse(localStorage.getItem('colornest_cart') || '[]');
-  return Array.isArray(parsed) ? parsed : [];
+  try {
+    const parsed = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
+    const sanitized = sanitizeCartPayload(parsed);
+
+    // Auto-heal localStorage if it contains malformed cart entries.
+    if (JSON.stringify(parsed) !== JSON.stringify(sanitized)) {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(sanitized));
+    }
+
+    return sanitized;
+  } catch {
+    localStorage.setItem(CART_STORAGE_KEY, '[]');
+    return [];
+  }
 }
 
 function saveCart(cart) {
-  localStorage.setItem('colornest_cart', JSON.stringify(cart));
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(sanitizeCartPayload(cart)));
 }
 
 function findProductById(id) {
@@ -259,14 +300,15 @@ function updateCartCount() {
 function upsertCartItem(productId, quantity) {
   const product = findProductById(productId);
   if (!product) return;
+  const normalizedQty = normalizeQuantity(quantity);
 
   const cart = getCart();
   const existing = cart.find((item) => item.id === productId);
 
   if (existing) {
-    existing.quantity += quantity;
+    existing.quantity = normalizeQuantity(existing.quantity + normalizedQty);
   } else {
-    cart.push({ id: productId, quantity });
+    cart.push({ id: productId, quantity: normalizedQty });
   }
 
   saveCart(cart.filter((item) => item.quantity > 0));
@@ -277,7 +319,7 @@ function setCartItemQuantity(productId, quantity) {
   const cart = getCart();
   const target = cart.find((item) => item.id === productId);
   if (!target) return;
-  target.quantity = quantity;
+  target.quantity = normalizeQuantity(quantity);
   saveCart(cart.filter((item) => item.quantity > 0));
   updateCartCount();
 }
