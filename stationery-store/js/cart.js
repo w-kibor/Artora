@@ -1,8 +1,8 @@
-const PRODUCT_DATA = [
+const RAW_PRODUCT_DATA = [
   {
     id: 'cb-forest-friends',
     name: 'Forest Friends Coloring Book',
-    price: 12.5,
+    price: 1250,
     category: 'Coloring Books',
     image: 'images/coloring-book-forest.svg',
     shortDescription: '32 hand-drawn animal scenes with thick, bleed-safe pages.',
@@ -13,7 +13,7 @@ const PRODUCT_DATA = [
   {
     id: 'jr-lavender-daily',
     name: 'Lavender Daily Journal',
-    price: 9.99,
+    price: 999,
     category: 'Journals',
     image: 'images/journal-lavender.svg',
     shortDescription: 'Soft-touch cover, dotted pages, and habit tracker inserts.',
@@ -24,7 +24,7 @@ const PRODUCT_DATA = [
   {
     id: 'pp-pastel-pencil-set',
     name: 'Pastel Color Pencil Set (24)',
-    price: 15.0,
+    price: 1500,
     category: 'Pens & Pencils',
     image: 'images/pencil-set.svg',
     shortDescription: 'Smooth-core blendable pencils in gentle pastel shades.',
@@ -35,7 +35,7 @@ const PRODUCT_DATA = [
   {
     id: 'as-dual-tip-markers',
     name: 'Dual Tip Sketch Markers (18)',
-    price: 18.5,
+    price: 1850,
     category: 'Art Supplies',
     image: 'images/markers-set.svg',
     shortDescription: 'Brush tip + fine liner tip for lettering and illustrations.',
@@ -46,7 +46,7 @@ const PRODUCT_DATA = [
   {
     id: 'cb-mandala-calm',
     name: 'Mandala Calm Coloring Book',
-    price: 11.25,
+    price: 1125,
     category: 'Coloring Books',
     image: 'images/coloring-book-mandala.svg',
     shortDescription: 'Intricate mandalas for mindful coloring sessions.',
@@ -57,7 +57,7 @@ const PRODUCT_DATA = [
   {
     id: 'jr-mint-gratitude',
     name: 'Mint Gratitude Journal',
-    price: 10.5,
+    price: 1050,
     category: 'Journals',
     image: 'images/journal-mint.svg',
     shortDescription: 'Prompt-based gratitude pages and weekly check-ins.',
@@ -68,7 +68,7 @@ const PRODUCT_DATA = [
   {
     id: 'pp-gel-pen-rainbow',
     name: 'Rainbow Gel Pen Pack (12)',
-    price: 8.75,
+    price: 875,
     category: 'Pens & Pencils',
     image: 'images/gel-pens.svg',
     shortDescription: 'Quick-dry ink with smooth 0.5mm precision tips.',
@@ -79,7 +79,7 @@ const PRODUCT_DATA = [
   {
     id: 'as-watercolor-kit',
     name: 'Pocket Watercolor Kit',
-    price: 21.0,
+    price: 2100,
     category: 'Art Supplies',
     image: 'images/watercolor-kit.svg',
     shortDescription: 'Travel-ready palette with refillable water brush.',
@@ -199,6 +199,20 @@ const PRODUCT_DATA = [
   }
 ];
 
+function validateCatalog(products) {
+  return products.filter((product) => {
+    const validPrice = Number.isInteger(product.price) && product.price > 0;
+    if (!validPrice) {
+      console.warn(
+        `[catalog] Skipping product "${product.id}" because price must be a positive integer KES value. Received: ${product.price}`
+      );
+    }
+    return validPrice;
+  });
+}
+
+const PRODUCT_DATA = validateCatalog(RAW_PRODUCT_DATA);
+
 const CURRENCY = new Intl.NumberFormat('en-KE', {
   style: 'currency',
   currency: 'KES'
@@ -243,6 +257,9 @@ function updateCartCount() {
 }
 
 function upsertCartItem(productId, quantity) {
+  const product = findProductById(productId);
+  if (!product) return;
+
   const cart = getCart();
   const existing = cart.find((item) => item.id === productId);
 
