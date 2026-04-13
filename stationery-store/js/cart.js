@@ -422,6 +422,18 @@ function renderColoringBooksSections() {
   });
 }
 
+function renderJournalsSection() {
+  const target = document.querySelector('[data-journal-grid]');
+  if (!target) return;
+
+  const journalProducts = ['jr-lavender-daily', 'jr-mint-gratitude']
+    .map((id) => findProductById(id))
+    .filter(Boolean);
+
+  target.innerHTML = journalProducts.map(cardTemplate).join('');
+  wireAddToCartButtons(target);
+}
+
 function initShopFilters() {
   const wrap = document.querySelector('[data-filter-row]');
   if (!wrap) return;
@@ -569,6 +581,7 @@ function init() {
   renderFeaturedProducts();
   initShopFilters();
   renderColoringBooksSections();
+  renderJournalsSection();
   renderProductDetails();
   renderCartPage();
   setupContactForm();
