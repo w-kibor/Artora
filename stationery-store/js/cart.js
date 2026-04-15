@@ -4,7 +4,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Forest Friends Coloring Book',
     price: 1250,
     category: 'Coloring Books',
-    image: 'images/coloring-book-forest.svg',
+    image: 'images/Forest Friends Coloring Book - Cute, Fun and Engaging Animal Illustrations for Kids (Ages 4-8).jpeg',
     shortDescription: '32 hand-drawn animal scenes with thick, bleed-safe pages.',
     description:
       'Unplug and color cozy woodland illustrations with premium, bleed-safe paper. Perfect for relaxing evenings and creative breaks.',
@@ -15,7 +15,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Lavender Daily Journal',
     price: 999,
     category: 'Journals',
-    image: 'images/journal-lavender.svg',
+    image: 'images/_ (4).jpeg',
     shortDescription: 'Soft-touch cover, dotted pages, and habit tracker inserts.',
     description:
       'A dreamy dotted journal designed for notes, plans, and sketches. Includes monthly reflection pages and ribbon bookmarks.',
@@ -26,7 +26,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Pastel Color Pencil Set (24)',
     price: 1500,
     category: 'Pens & Pencils',
-    image: 'images/pencil-set.svg',
+    image: 'images/PEOPLE-PLACES-THINGS-ETC.jpeg',
     shortDescription: 'Smooth-core blendable pencils in gentle pastel shades.',
     description:
       'A 24-piece pencil set with blend-friendly pigments and balanced barrel grip for detail work and effortless shading.',
@@ -37,7 +37,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Dual Tip Sketch Markers (18)',
     price: 1850,
     category: 'Art Supplies',
-    image: 'images/markers-set.svg',
+    image: 'images/SHEIN.jpeg',
     shortDescription: 'Brush tip + fine liner tip for lettering and illustrations.',
     description:
       'Vibrant alcohol-based markers with dual tips for smooth fills and precision lines. Great for calligraphy and poster art.',
@@ -48,7 +48,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Mandala Calm Coloring Book',
     price: 1125,
     category: 'Coloring Books',
-    image: 'images/coloring-book-mandala.svg',
+    image: 'images/Relax with 50 Mandala Coloring Book in 2025 – Embrace Calm and Creativity!.jpeg',
     shortDescription: 'Intricate mandalas for mindful coloring sessions.',
     description:
       'Designed for calm focus, this coloring book features 40 geometric and floral mandala compositions for all ages.',
@@ -59,7 +59,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Mint Gratitude Journal',
     price: 1050,
     category: 'Journals',
-    image: 'images/journal-mint.svg',
+    image: 'images/new 2024 journal.jpeg',
     shortDescription: 'Prompt-based gratitude pages and weekly check-ins.',
     description:
       'Build a joyful daily ritual with guided prompts, quote pages, and spacious layouts to document wins and ideas.',
@@ -70,7 +70,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Rainbow Gel Pen Pack (12)',
     price: 875,
     category: 'Pens & Pencils',
-    image: 'images/gel-pens.svg',
+    image: 'images/Caneta Colorida - Preço mais baixo que concorrentes!.jpeg',
     shortDescription: 'Quick-dry ink with smooth 0.5mm precision tips.',
     description:
       'A colorful pen pack ideal for journaling, note-taking, and doodling. Smudge-resistant and easy-flow ink system.',
@@ -81,7 +81,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Pocket Watercolor Kit',
     price: 2100,
     category: 'Art Supplies',
-    image: 'images/watercolor-kit.svg',
+    image: 'images/watercolor-painting.jpeg',
     shortDescription: 'Travel-ready palette with refillable water brush.',
     description:
       'Compact watercolor tin with rich pigments, mixing wells, and a water brush for painting anywhere inspiration strikes.',
@@ -92,7 +92,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Kids Animal Adventure Coloring Book',
     price: 850,
     category: 'Coloring Books',
-    image: 'images/coloring-book-forest.svg',
+    image: 'images/Animal Adventure Coloring Book for Kids Fun Riding Animals Activity Pages Printable PDF (10 Pages).jpeg',
     shortDescription: 'Friendly animals, big outlines, and easy pages for little artists.',
     description:
       'A playful coloring journey for kids with cheerful scenes, thick lines, and parent-friendly single-sided pages.',
@@ -103,7 +103,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Kids Fun Shapes Coloring Book',
     price: 780,
     category: 'Coloring Books',
-    image: 'images/coloring-book-forest.svg',
+    image: 'images/Shapes and Patterns Coloring Book - Toddler and Preschool Activity (Printable PDF).jpeg',
     shortDescription: 'Simple shapes and joyful activities for preschool creativity.',
     description:
       'Helps children build confidence through simple patterns, cheerful objects, and beginner-friendly coloring spaces.',
@@ -114,7 +114,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Mandala Deep Calm Edition',
     price: 1200,
     category: 'Coloring Books',
-    image: 'images/coloring-book-mandala.svg',
+    image: 'images/The Mandala Colouring Book_ Beautiful Designs To Inspire Creativity.jpeg',
     shortDescription: 'Advanced mandala details for calm focus and mindful breaks.',
     description:
       'A premium adults-only mandala collection with layered geometric designs made for long, relaxing sessions.',
@@ -125,7 +125,7 @@ const RAW_PRODUCT_DATA = [
     name: 'Mandala Zen Night Collection',
     price: 1350,
     category: 'Coloring Books',
-    image: 'images/coloring-book-mandala.svg',
+    image: 'images/Geometric Mandala Coloring Design for Beginners.jpeg',
     shortDescription: 'Night-themed mandala pages with intricate floral symmetry.',
     description:
       'Designed for evening wind-down routines, featuring rich mandalas ideal for pencils, gel pens, and fine liners.',
