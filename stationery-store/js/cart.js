@@ -222,6 +222,15 @@ const CART_STORAGE_KEY = 'colornest_cart';
 const MIN_QTY = 1;
 const MAX_QTY = 12;
 
+function buildCartSummary(lines, subtotal) {
+  const itemLines = lines.map(
+    (line, index) =>
+      `${index + 1}. ${line.product.name} x${line.quantity} - ${formatPrice(line.lineTotal)}`
+  );
+
+  return `Items:\n${itemLines.join('\n')}\n\nTotal: ${formatPrice(subtotal)}`;
+}
+
 function normalizeQuantity(value) {
   const parsed = Number.parseInt(value, 10);
   if (!Number.isInteger(parsed)) return MIN_QTY;
@@ -528,6 +537,7 @@ function renderCartPage() {
   const list = document.querySelector('[data-cart-items]');
   const totalEl = document.querySelector('[data-cart-total]');
   const subtotalEl = document.querySelector('[data-cart-subtotal]');
+  const checkoutButton = document.querySelector('[data-cart-checkout]');
   if (!list || !totalEl || !subtotalEl) return;
 
   const lines = getCartWithDetails();
@@ -536,6 +546,11 @@ function renderCartPage() {
     list.innerHTML = '<div class="empty">Your cart is empty. Add colorful supplies from the shop.</div>';
     subtotalEl.textContent = formatPrice(0);
     totalEl.textContent = formatPrice(0);
+    if (checkoutButton) {
+      checkoutButton.disabled = true;
+      checkoutButton.textContent = 'Contact to Order';
+      checkoutButton.onclick = null;
+    }
     return;
   }
 
@@ -543,6 +558,15 @@ function renderCartPage() {
   const subtotal = lines.reduce((sum, line) => sum + line.lineTotal, 0);
   subtotalEl.textContent = formatPrice(subtotal);
   totalEl.textContent = formatPrice(subtotal);
+
+  if (checkoutButton) {
+    checkoutButton.disabled = false;
+    checkoutButton.onclick = () => {
+      const params = new URLSearchParams();
+      params.set('cart', buildCartSummary(lines, subtotal));
+      window.location.href = `contact.html?${params.toString()}`;
+    };
+  }
 
   list.querySelectorAll('[data-remove-item]').forEach((button) => {
     button.addEventListener('click', () => {
@@ -566,13 +590,47 @@ function setupContactForm() {
   const form = document.querySelector('[data-contact-form]');
   if (!form) return;
 
+  const messageField = form.querySelector('[name="message"]');
+  const params = new URLSearchParams(window.location.search);
+  const cartSummary = params.get('cart');
+
+  if (messageField && cartSummary && !messageField.value.trim()) {
+    messageField.value = `Hello Artora,\n\nI would like to place this order:\n${cartSummary}\n\nAdditional inquiry:\n`;
+  }
+
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const notice = form.querySelector('[data-form-notice]');
+
+    const name = String(form.elements.name?.value || '').trim();
+    const email = String(form.elements.email?.value || '').trim();
+    const message = String(form.elements.message?.value || '').trim();
+
+    if (!name || !email || !message) {
+      if (notice) {
+        notice.textContent = 'Please fill in your name, email, and message first.';
+        notice.hidden = false;
+      }
+      return;
+    }
+
+    const whatsappNumber = String(form.getAttribute('data-contact-whatsapp') || '').replace(/\D/g, '');
+    const composedMessage = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+    if (whatsappNumber.length >= 10) {
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(composedMessage)}`;
+      window.open(whatsappUrl, '_blank', 'noopener');
+      if (notice) {
+        notice.textContent = 'Opening WhatsApp with your cart details and inquiry.';
+        notice.hidden = false;
+      }
+      return;
+    }
+
     if (notice) {
+      notice.textContent = 'Set data-contact-whatsapp on the contact form.';
       notice.hidden = false;
     }
-    form.reset();
   });
 }
 
