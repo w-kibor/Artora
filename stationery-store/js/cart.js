@@ -219,6 +219,7 @@ const CURRENCY = new Intl.NumberFormat('en-KE', {
 });
 
 const CART_STORAGE_KEY = 'colornest_cart';
+const CHECKOUT_DRAFT_KEY = 'artora_checkout_draft';
 const MIN_QTY = 1;
 const MAX_QTY = 12;
 
@@ -562,8 +563,30 @@ function renderCartPage() {
   if (checkoutButton) {
     checkoutButton.disabled = false;
     checkoutButton.onclick = () => {
+      const draft = {
+        cartSummary: buildCartSummary(lines, subtotal),
+        createdAt: Date.now()
+      };
+
+      try {
+        sessionStorage.setItem(CHECKOUT_DRAFT_KEY, JSON.stringify(draft));
+      } catch {
+        // Ignore storage errors and allow fallback to query params.
+      }
+
+      // Preserve fallback path if storage is unavailable.
+      try {
+        const saved = sessionStorage.getItem(CHECKOUT_DRAFT_KEY);
+        if (saved) {
+          window.location.href = 'contact.html';
+          return;
+        }
+      } catch {
+        // Continue to URL fallback.
+      }
+
       const params = new URLSearchParams();
-      params.set('cart', buildCartSummary(lines, subtotal));
+      params.set('cart', draft.cartSummary);
       window.location.href = `contact.html?${params.toString()}`;
     };
   }
@@ -592,10 +615,30 @@ function setupContactForm() {
 
   const messageField = form.querySelector('[name="message"]');
   const params = new URLSearchParams(window.location.search);
-  const cartSummary = params.get('cart');
+  const cartSummaryFromUrl = params.get('cart');
+
+  let cartSummaryFromDraft = '';
+  try {
+    const rawDraft = sessionStorage.getItem(CHECKOUT_DRAFT_KEY);
+    if (rawDraft) {
+      const parsedDraft = JSON.parse(rawDraft);
+      if (parsedDraft && typeof parsedDraft.cartSummary === 'string') {
+        cartSummaryFromDraft = parsedDraft.cartSummary;
+      }
+    }
+  } catch {
+    cartSummaryFromDraft = '';
+  }
+
+  const cartSummary = cartSummaryFromDraft || cartSummaryFromUrl || '';
 
   if (messageField && cartSummary && !messageField.value.trim()) {
     messageField.value = `Hello Artora,\n\nI would like to place this order:\n${cartSummary}\n\nAdditional inquiry:\n`;
+    try {
+      sessionStorage.removeItem(CHECKOUT_DRAFT_KEY);
+    } catch {
+      // Ignore storage errors.
+    }
   }
 
   form.addEventListener('submit', (event) => {
