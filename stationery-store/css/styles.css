@@ -40,6 +40,14 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(90, 134, 255, 0.58);
+  outline-offset: 2px;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -482,6 +490,25 @@ main {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.55rem;
+}
+
+.summary-title {
+  font-size: 1.45rem;
+}
+
+.summary-divider {
+  border: 0;
+  border-top: 1px solid rgba(131, 129, 165, 0.2);
+  margin: 1rem 0;
+}
+
+.summary-checkout-btn {
+  width: 100%;
+  margin-top: 0.8rem;
+}
+
+.summary-note {
+  margin: 0.7rem 0 0;
 }
 
 .form-shell {
