@@ -383,14 +383,40 @@ function renderFeaturedProducts() {
   wireAddToCartButtons(target);
 }
 
-function renderShopProducts(category = 'All') {
+function searchProducts(query = '') {
+  const lowerQuery = query.toLowerCase().trim();
+  if (!lowerQuery) return PRODUCT_DATA;
+
+  return PRODUCT_DATA.filter((product) =>
+    product.name.toLowerCase().includes(lowerQuery) ||
+    product.shortDescription.toLowerCase().includes(lowerQuery) ||
+    product.description.toLowerCase().includes(lowerQuery)
+  );
+}
+
+function renderShopProducts(category = 'All', searchQuery = '') {
   const target = document.querySelector('[data-shop-grid]');
   if (!target) return;
 
-  const filtered =
-    category === 'All'
-      ? PRODUCT_DATA
-      : PRODUCT_DATA.filter((product) => product.category === category);
+  let filtered = PRODUCT_DATA;
+
+  // Apply category filter
+  if (category !== 'All') {
+    filtered = filtered.filter((product) => product.category === category);
+  }
+
+  // Apply search filter
+  if (searchQuery.trim()) {
+    filtered = searchProducts(searchQuery).filter(
+      (product) => category === 'All' || product.category === category
+    );
+  }
+
+  // Show empty state if no results
+  if (!filtered.length) {
+    target.innerHTML = '<div class="empty-state">No products found. Try different search terms or filters.</div>';
+    return;
+  }
 
   target.innerHTML = filtered.map(cardTemplate).join('');
   wireAddToCartButtons(target);
@@ -446,18 +472,31 @@ function renderJournalsSection() {
 
 function initShopFilters() {
   const wrap = document.querySelector('[data-filter-row]');
+  const searchInput = document.querySelector('[data-search-input]');
   if (!wrap) return;
 
   const params = new URLSearchParams(window.location.search);
   const initialCategory = params.get('category') || 'All';
+  let currentCategory = initialCategory;
+  let currentSearch = '';
 
+  // Setup category filter buttons
   wrap.querySelectorAll('.filter-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       wrap.querySelectorAll('.filter-btn').forEach((item) => item.classList.remove('active'));
       btn.classList.add('active');
-      renderShopProducts(btn.getAttribute('data-filter') || 'All');
+      currentCategory = btn.getAttribute('data-filter') || 'All';
+      renderShopProducts(currentCategory, currentSearch);
     });
   });
+
+  // Setup search input
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      renderShopProducts(currentCategory, currentSearch);
+    });
+  }
 
   const initialButton = Array.from(wrap.querySelectorAll('.filter-btn')).find(
     (btn) => btn.getAttribute('data-filter') === initialCategory
