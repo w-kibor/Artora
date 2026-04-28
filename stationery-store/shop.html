@@ -33,9 +33,19 @@
       </section>
 
       <section class="section" aria-label="Product filters">
-        <div class="search-bar-wrapper" data-search-wrapper>
-          <input type="search" placeholder="Search products by name..." class="search-input" data-search-input aria-label="Search products" />
-          <span class="search-icon" aria-hidden="true">🔍</span>
+        <div class="filter-toolbar">
+          <div class="search-bar-wrapper" data-search-wrapper>
+            <input type="search" placeholder="Search products by name..." class="search-input" data-search-input aria-label="Search products" />
+            <span class="search-icon" aria-hidden="true">🔍</span>
+          </div>
+          <label class="sort-control">
+            <span class="sort-label">Sort by</span>
+            <select class="sort-select" data-sort-select aria-label="Sort products">
+              <option value="best-sellers">Best Sellers</option>
+              <option value="price-low-high">Price: Low to High</option>
+              <option value="newest">Newest</option>
+            </select>
+          </label>
         </div>
         <div class="filter-row" data-filter-row>
           <button class="filter-btn active" data-filter="All">All</button>
