@@ -212,6 +212,15 @@ function validateCatalog(products) {
 }
 
 const PRODUCT_DATA = validateCatalog(RAW_PRODUCT_DATA);
+const PRODUCT_INDEX = new Map(PRODUCT_DATA.map((product, index) => [product.id, index]));
+const BEST_SELLER_IDS = [
+  'cb-forest-friends',
+  'jr-lavender-daily',
+  'pp-pastel-pencil-set',
+  'as-dual-tip-markers',
+  'cb-mandala-calm',
+  'jr-mint-gratitude'
+];
 
 const CURRENCY = new Intl.NumberFormat('en-KE', {
   style: 'currency',
@@ -394,7 +403,34 @@ function searchProducts(query = '') {
   );
 }
 
-function renderShopProducts(category = 'All', searchQuery = '') {
+function getBestSellerRank(productId) {
+  const rank = BEST_SELLER_IDS.indexOf(productId);
+  return rank === -1 ? BEST_SELLER_IDS.length : rank;
+}
+
+function sortProducts(products, sortBy = 'best-sellers') {
+  const sorted = [...products];
+
+  if (sortBy === 'price-low-high') {
+    return sorted.sort((left, right) => left.price - right.price || PRODUCT_INDEX.get(left.id) - PRODUCT_INDEX.get(right.id));
+  }
+
+  if (sortBy === 'newest') {
+    return sorted.sort((left, right) => PRODUCT_INDEX.get(right.id) - PRODUCT_INDEX.get(left.id));
+  }
+
+  return sorted.sort((left, right) => {
+    const bestSellerDelta = getBestSellerRank(left.id) - getBestSellerRank(right.id);
+    if (bestSellerDelta !== 0) return bestSellerDelta;
+
+    const featuredDelta = Number(right.featured) - Number(left.featured);
+    if (featuredDelta !== 0) return featuredDelta;
+
+    return PRODUCT_INDEX.get(left.id) - PRODUCT_INDEX.get(right.id);
+  });
+}
+
+function renderShopProducts(category = 'All', searchQuery = '', sortBy = 'best-sellers') {
   const target = document.querySelector('[data-shop-grid]');
   if (!target) return;
 
@@ -411,6 +447,8 @@ function renderShopProducts(category = 'All', searchQuery = '') {
       (product) => category === 'All' || product.category === category
     );
   }
+
+  filtered = sortProducts(filtered, sortBy);
 
   // Show empty state if no results
   if (!filtered.length) {
@@ -473,12 +511,14 @@ function renderJournalsSection() {
 function initShopFilters() {
   const wrap = document.querySelector('[data-filter-row]');
   const searchInput = document.querySelector('[data-search-input]');
+  const sortSelect = document.querySelector('[data-sort-select]');
   if (!wrap) return;
 
   const params = new URLSearchParams(window.location.search);
   const initialCategory = params.get('category') || 'All';
   let currentCategory = initialCategory;
   let currentSearch = '';
+  let currentSort = sortSelect ? sortSelect.value : 'best-sellers';
 
   // Setup category filter buttons
   wrap.querySelectorAll('.filter-btn').forEach((btn) => {
@@ -486,7 +526,7 @@ function initShopFilters() {
       wrap.querySelectorAll('.filter-btn').forEach((item) => item.classList.remove('active'));
       btn.classList.add('active');
       currentCategory = btn.getAttribute('data-filter') || 'All';
-      renderShopProducts(currentCategory, currentSearch);
+      renderShopProducts(currentCategory, currentSearch, currentSort);
     });
   });
 
@@ -494,7 +534,14 @@ function initShopFilters() {
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       currentSearch = e.target.value;
-      renderShopProducts(currentCategory, currentSearch);
+      renderShopProducts(currentCategory, currentSearch, currentSort);
+    });
+  }
+
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => {
+      currentSort = sortSelect.value;
+      renderShopProducts(currentCategory, currentSearch, currentSort);
     });
   }
 
@@ -507,7 +554,7 @@ function initShopFilters() {
     initialButton.classList.add('active');
   }
 
-  renderShopProducts(initialButton ? initialCategory : 'All');
+  renderShopProducts(initialButton ? initialCategory : 'All', currentSearch, currentSort);
 }
 
 function renderProductDetails() {
